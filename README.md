@@ -1,8 +1,13 @@
-# CodeTutor AI
+# Shikshak 🎓
 
-CodeTutor AI is an interactive educational platform designed to teach programming languages (C, C++, C#, Java, Python) through an AI-powered tutor and comprehensive quiz system. The platform features personalized learning paths, progress tracking, and an integrated compiler for hands-on coding challenges.
+**Shikshak** (meaning "Teacher" in Hindi/Sanskrit) is a modern, accessible educational platform designed to teach programming languages (C, C++, C#, Java, Python) through an AI-powered tutor and comprehensive quiz system. With no authentication barriers and an engaging glassmorphism UI, Shikshak makes learning programming intuitive and enjoyable for everyone.
 
 ## 🌟 Features
+
+### 🚀 Instant Access - No Authentication Required
+- **Jump straight into learning** - No sign-up or login barriers
+- **Immediate access** to all educational content
+- **Simplified user experience** focused on learning
 
 ### 🤖 AI-Powered Content Generation
 - **Dynamic tutorial creation** using Google Gemini AI
@@ -10,86 +15,86 @@ CodeTutor AI is an interactive educational platform designed to teach programmin
 - **Comprehensive note compilation** for each programming topic
 - **Fallback to curated content** when AI services are unavailable
 
-### 🔐 User Authentication
-- Complete registration and login system
-- Secure user sessions with JWT tokens
-- User progress tracking and persistence
-
-### 🎓 AI Tutor Interface
-- Interactive step-by-step learning powered by AI
+### 🎓 Interactive AI Tutor
+- Step-by-step learning powered by Google Gemini AI
 - Checkpoint questions for understanding verification
 - Sequential topic progression with AI-generated content
 - Comprehensive notes automatically generated for each topic
 
-### 🎯 Quiz System
-- **AI-generated quiz questions** tailored to your learning progress
+### 🎯 Advanced Quiz System
+- **AI-generated quiz questions** tailored to programming concepts
 - Four difficulty levels: Easy, Medium, Hard, Nightmare
 - Multiple question types: MCQ, Coding, Debugging
 - Timer-based quizzes with auto-submission
 - Detailed results with AI-powered explanations
-- Custom quiz generator for completed topics
+- Custom quiz generator for exploring different topics
 
-### 💻 Integrated Compiler
+### 💻 Integrated Code Compiler
 - Support for C, C++, C#, Java, and Python
-- Real-time code execution
+- Real-time code execution with instant feedback
 - Error handling and output display
 - Secure sandboxed execution environment
 
-### 🎨 Modern UI/UX
-- Light and Dark theme support
-- Responsive design for all devices
-- Clean, intuitive interface
-- Progress visualization
+### 🎨 Modern Glassmorphism UI
+- **Stunning glassmorphism design** with frosted glass effects
+- **Dynamic gradient backgrounds** that respond to user interaction
+- **Smooth animations** and hover effects throughout
+- **Responsive design** optimized for all devices
+- **Light and Dark theme** support with seamless switching
+- **Engaging dashboard** with interactive language cards and progress indicators
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React.js** - UI framework
-- **React Router DOM** - Navigation
-- **CSS Modules** - Component-level styling
-- **Context API** - State management
+- **React.js** - Modern UI framework
+- **React Router DOM** - Seamless navigation
+- **CSS Modules** - Scoped component styling
+- **Glassmorphism Design** - Modern frosted glass aesthetic
+- **CSS Grid & Flexbox** - Responsive layout system
 
 ### Backend
-- **Flask** - Python web framework
+- **Flask** - Lightweight Python web framework
 - **Google Gemini AI** - Advanced AI content generation
-- **JWT** - Authentication tokens
-- **JSON** - File-based database
-- **Subprocess** - Code compilation and execution
+- **JSON File System** - Simple data persistence
+- **Subprocess** - Secure code compilation and execution
 
-### Styling
-- **CSS Variables** - Theme management
-- **Responsive Grid** - Layout system
-- **CSS Modules** - Scoped styling
+### Styling & Design
+- **CSS Variables** - Dynamic theme management
+- **Gradient Backgrounds** - Engaging visual effects
+- **CSS Animations** - Smooth user interactions
+- **Responsive Design** - Mobile-first approach
 
 ## 📁 Project Structure
 
 ```
-AI_tutor/
+Shikshak/
 ├── backend/
 │   ├── app.py                 # Main Flask application
-│   ├── auth.py               # Authentication routes
-│   ├── tutor.py              # Tutorial content routes
+│   ├── tutor.py              # Tutorial content routes  
 │   ├── quiz.py               # Quiz generation and submission
 │   ├── compiler.py           # Code execution service
-│   ├── ai_service.py         # AI integration service
+│   ├── ai_service.py         # Google Gemini AI integration
 │   ├── database/
-│   │   ├── users.json        # User credentials
-│   │   └── progress.json     # User progress data
+│   │   └── progress.json     # Learning progress data (optional)
 │   ├── requirements.txt      # Python dependencies
 │   ├── ai_requirements.txt   # AI provider packages
-│   └── .env.example          # Environment variables template
+│   └── .env                  # Environment variables (ignored in git)
 ├── frontend/
 │   ├── public/
 │   │   └── index.html        # HTML template
 │   ├── src/
 │   │   ├── components/       # React components
-│   │   ├── context/          # React contexts
-│   │   ├── utils/            # Utility functions
+│   │   │   ├── Dashboard/    # Enhanced glassmorphism dashboard
+│   │   │   ├── Tutor/        # AI tutor interface
+│   │   │   ├── Quiz/         # Interactive quiz system
+│   │   │   ├── Compiler/     # Code editor and execution
+│   │   │   └── Common/       # Shared UI components
+│   │   ├── utils/            # API utilities
 │   │   ├── App.js            # Main app component
 │   │   └── index.js          # App entry point
 │   └── package.json          # Node.js dependencies
+├── start_app.ps1             # Windows application launcher
 ├── setup_ai.ps1             # Windows AI setup script
-├── setup_ai.sh              # Linux/Mac AI setup script
 ├── AI_INTEGRATION_GUIDE.md  # Detailed AI setup guide
 └── README.md                 # Project documentation
 ```
@@ -115,7 +120,18 @@ AI_tutor/
 
 3. **Start the application:**
    ```bash
-   .\start_app.ps1  # Windows
+   .\start_app.ps1  # Windows - automatically starts both backend and frontend
+   ```
+
+   Or manually:
+   ```bash
+   # Terminal 1 - Backend
+   cd backend
+   python app.py
+   
+   # Terminal 2 - Frontend  
+   cd frontend
+   npm start
    ```
 
 📖 **For detailed setup instructions, see [GEMINI_SETUP.md](GEMINI_SETUP.md)**
@@ -197,62 +213,62 @@ For full code execution functionality, install the following compilers:
 
 ## 📚 API Endpoints
 
-### Authentication
-- `POST /api/register` - User registration
-- `POST /api/login` - User login
-- `GET /api/user/progress` - Get user progress (protected)
-- `POST /api/user/progress` - Update user progress (protected)
-
 ### Tutorial Content
-- `GET /api/tutor/content` - Get tutorial content for a topic (protected)
-- `GET /api/tutor/topics` - Get available topics for a language (protected)
-- `GET /api/tutor/notes` - Get comprehensive notes for a topic (protected)
+- `GET /api/tutor/content` - Get AI-generated tutorial content for a topic
+- `GET /api/tutor/topics` - Get available topics for a programming language
+- `GET /api/tutor/notes` - Get comprehensive notes for a topic
 
 ### Quiz System
-- `POST /api/quiz/generate` - Generate a quiz for a topic (protected)
-- `POST /api/quiz/submit` - Submit quiz answers (protected)
-- `POST /api/quiz/custom` - Generate custom quiz from multiple topics (protected)
+- `POST /api/quiz/generate` - Generate AI-powered quiz for a topic
+- `POST /api/quiz/submit` - Submit quiz answers and get results
+- `POST /api/quiz/custom` - Generate custom quiz from multiple topics
 
 ### Code Execution
-- `POST /api/run_code` - Execute code in specified language (protected)
+- `POST /api/run_code` - Execute code in specified language with real-time output
+
+### Health Check
+- `GET /api/health` - Check if the backend service is running
+- `GET /api/test-ai` - Test Google Gemini AI connectivity
 
 ## 🎮 Usage Guide
 
 ### Getting Started
-1. **Register** a new account or **login** with existing credentials
-2. **Select a programming language** from the dashboard
-3. **Start learning** with the AI tutor for any topic
-4. **Take quizzes** to test your understanding
-5. **Track your progress** on the dashboard
+1. **Launch the application** using `start_app.ps1` or manually start backend and frontend
+2. **Open your browser** to `http://localhost:3000`
+3. **Select a programming language** from the beautiful glassmorphism dashboard
+4. **Start learning immediately** - no registration or login required!
 
-### Learning Flow
-1. **Tutorial** - Learn concepts step by step with the AI tutor
-2. **Notes** - Review comprehensive notes for the topic
-3. **Quiz** - Test your knowledge with interactive quizzes
-4. **Progress** - See your advancement and unlock new features
+### Learning Experience
+1. **Interactive Dashboard** - Explore programming languages with engaging cards showing difficulty levels and features
+2. **AI Tutor** - Learn concepts step-by-step with Google Gemini AI-powered explanations
+3. **Comprehensive Notes** - Access detailed, AI-generated notes for any topic
+4. **Interactive Quizzes** - Test your knowledge with dynamically generated questions
+5. **Live Code Compiler** - Practice coding directly in the browser with instant feedback
 
-### Advanced Features
-- **Custom Quiz** - Available after completing 4 topics in a language
-- **Code Compiler** - Practice coding directly in the browser
-- **Progress Tracking** - Monitor your learning journey
-- **Theme Switching** - Choose between light and dark modes
+### Enhanced Features
+- **Instant Access** - No barriers to learning, jump straight into any topic
+- **Beautiful UI** - Enjoy the modern glassmorphism design with smooth animations
+- **AI-Powered Content** - Every tutorial and quiz is enhanced by Google Gemini AI
+- **Theme Switching** - Toggle between light and dark modes seamlessly
+- **Responsive Design** - Perfect experience on desktop, tablet, and mobile devices
 
 ## 🔧 Configuration
 
 ### Environment Variables
 Create a `.env` file in the backend directory:
 ```
-SECRET_KEY=your-secret-key-here
-DEBUG=True
+GOOGLE_API_KEY=your-google-gemini-api-key-here
 ```
 
-### Database Configuration
-The application uses JSON files for data storage:
-- `backend/database/users.json` - User credentials
-- `backend/database/progress.json` - User progress data
+### Data Storage
+The application uses simple JSON files for optional data persistence:
+- `backend/database/progress.json` - Optional learning progress data
 
-### Theme Customization
-Modify CSS variables in `frontend/src/index.css` to customize the theme colors.
+### UI Customization
+Modify CSS variables in component files to customize:
+- `Dashboard.module.css` - Dashboard glassmorphism effects
+- `Header.module.css` - Navigation and theme switching
+- Individual component CSS modules for specific styling
 
 ## 🤝 Contributing
 
@@ -268,17 +284,20 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🆘 Support
 
-For support, email support@codetutor-ai.com or create an issue in the GitHub repository.
+For support, create an issue in the GitHub repository or contact the development team.
 
 ## 🎯 Future Enhancements
 
-- Integration with real AI/LLM APIs for dynamic content generation
-- More programming languages support
-- Collaborative learning features
-- Advanced analytics and reporting
-- Mobile app development
-- Cloud deployment with scalable infrastructure
+- **Enhanced AI Integration** - More advanced AI-powered features and personalization
+- **Additional Programming Languages** - Support for JavaScript, Go, Rust, and more
+- **Advanced Code Challenges** - Complex coding problems and competitive programming
+- **Community Features** - Code sharing and collaborative learning
+- **Mobile App** - Native mobile applications for iOS and Android
+- **Offline Mode** - Download content for offline learning
+- **Advanced Analytics** - Detailed learning insights and progress analytics
 
 ---
 
-**CodeTutor AI** - Learn programming the smart way! 🚀
+**Shikshak** - शिक्षा का नया अंदाज़! (Education's New Style!) 🚀✨
+
+*Experience the future of programming education with AI-powered learning, stunning UI, and zero barriers to entry.*
