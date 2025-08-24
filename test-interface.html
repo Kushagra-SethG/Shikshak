@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shikshak AI - Simple Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .response {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 3px;
+            white-space: pre-wrap;
+        }
+        select, input {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎓 Shikshak AI</div>
+            <p>Simple Test Interface (No Authentication Required)</p>
+        </div>
+
+        <div class="section">
+            <h3>Health Check</h3>
+            <button onclick="checkHealth()">Check API Health</button>
+            <div id="health-response" class="response"></div>
+        </div>
+
+        <div class="section">
+            <h3>Test AI Integration</h3>
+            <button onclick="testAI()">Test AI Service</button>
+            <div id="ai-response" class="response"></div>
+        </div>
+
+        <div class="section">
+            <h3>Get Tutorial Content</h3>
+            <select id="language">
+                <option value="Python">Python</option>
+                <option value="C">C</option>
+                <option value="C++">C++</option>
+                <option value="Java">Java</option>
+                <option value="C#">C#</option>
+            </select>
+            <select id="topic">
+                <option value="Variables and Data Types">Variables and Data Types</option>
+                <option value="Control Structures">Control Structures</option>
+                <option value="Functions">Functions</option>
+                <option value="Classes and Objects">Classes and Objects</option>
+            </select>
+            <button onclick="getTutorialContent()">Get Tutorial</button>
+            <div id="tutorial-response" class="response"></div>
+        </div>
+
+        <div class="section">
+            <h3>Generate Quiz</h3>
+            <select id="quiz-language">
+                <option value="Python">Python</option>
+                <option value="C">C</option>
+                <option value="C++">C++</option>
+                <option value="Java">Java</option>
+            </select>
+            <select id="quiz-topic">
+                <option value="Variables and Data Types">Variables and Data Types</option>
+                <option value="Control Structures">Control Structures</option>
+            </select>
+            <select id="difficulty">
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <button onclick="generateQuiz()">Generate Quiz</button>
+            <div id="quiz-response" class="response"></div>
+        </div>
+
+        <div class="section">
+            <h3>Run Code</h3>
+            <select id="code-language">
+                <option value="python">Python</option>
+                <option value="c">C</option>
+                <option value="cpp">C++</option>
+                <option value="java">Java</option>
+            </select>
+            <br>
+            <textarea id="code" placeholder="Enter your code here..." style="width: 100%; height: 100px; margin: 10px 0;"></textarea>
+            <button onclick="runCode()">Run Code</button>
+            <div id="code-response" class="response"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        async function makeRequest(endpoint, options = {}) {
+            try {
+                const response = await fetch(API_BASE + endpoint, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                const data = await response.json();
+                return { success: response.ok, data, status: response.status };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        async function checkHealth() {
+            const result = await makeRequest('/health');
+            document.getElementById('health-response').textContent = 
+                result.success ? JSON.stringify(result.data, null, 2) : 
+                `Error: ${result.error || result.data?.message || 'Unknown error'}`;
+        }
+
+        async function testAI() {
+            const result = await makeRequest('/test-ai');
+            document.getElementById('ai-response').textContent = 
+                result.success ? JSON.stringify(result.data, null, 2) : 
+                `Error: ${result.error || result.data?.message || 'Unknown error'}`;
+        }
+
+        async function getTutorialContent() {
+            const language = document.getElementById('language').value;
+            const topic = document.getElementById('topic').value;
+            const result = await makeRequest(`/tutor/content?language=${language}&topic=${encodeURIComponent(topic)}`);
+            document.getElementById('tutorial-response').textContent = 
+                result.success ? JSON.stringify(result.data, null, 2) : 
+                `Error: ${result.error || result.data?.message || 'Unknown error'}`;
+        }
+
+        async function generateQuiz() {
+            const language = document.getElementById('quiz-language').value;
+            const topic = document.getElementById('quiz-topic').value;
+            const difficulty = document.getElementById('difficulty').value;
+            
+            const result = await makeRequest('/quiz/generate', {
+                method: 'POST',
+                body: JSON.stringify({ language, topic, difficulty })
+            });
+            
+            document.getElementById('quiz-response').textContent = 
+                result.success ? JSON.stringify(result.data, null, 2) : 
+                `Error: ${result.error || result.data?.message || 'Unknown error'}`;
+        }
+
+        async function runCode() {
+            const language = document.getElementById('code-language').value;
+            const code = document.getElementById('code').value;
+            
+            if (!code.trim()) {
+                document.getElementById('code-response').textContent = 'Please enter some code to run.';
+                return;
+            }
+            
+            const result = await makeRequest('/run_code', {
+                method: 'POST',
+                body: JSON.stringify({ language, code })
+            });
+            
+            document.getElementById('code-response').textContent = 
+                result.success ? JSON.stringify(result.data, null, 2) : 
+                `Error: ${result.error || result.data?.message || 'Unknown error'}`;
+        }
+
+        // Set some default code examples
+        document.getElementById('code').value = `# Python Hello World
+print("Hello, CodeTutor AI!")
+print("This is a simple Python program")
+
+# Simple calculation
+x = 10
+y = 20
+result = x + y
+print(f"The sum of {x} and {y} is {result}")`;
+    </script>
+</body>
+</html>
